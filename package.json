@@ -2,22 +2,27 @@
   "name": "Administrator",
   "version": "1.0.0",
   "description": "",
-  "main": "Duta.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./src/Administrator",
-    "dev": "nodemon ./src/Administrator"
+    "start": "node ./src/index",
+    "dev": "nodemon ./src/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VicDario/Administrator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VicDario/Administrator/issues"
+  },
+  "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "nodemon": "^2.0.2"
   }
 }
