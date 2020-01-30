@@ -34,7 +34,7 @@ client.on("message", (message) => {
 
   }catch(e) {
     console.log(e);
-    message.reply('no poseo ese comando por los momentos');
+    message.reply('Deje de joder');
   }
 
 });
