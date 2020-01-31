@@ -34,7 +34,7 @@ client.on("message", (message) => {
 
   }catch(e) {
     console.log(e);
-    message.reply('Deje de joder');
+    message.reply('No puedo realizar esa accion');
   }
 
 });
