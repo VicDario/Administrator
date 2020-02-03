@@ -27,9 +27,9 @@ client.on("message", (message) => {
   // Manejador de Comandos
 
   try{
-    delete require.cache[require.resolve(`./comandos/${command}.js`)]; // Se limpia la cache de comandos anteriores
+    delete require.cache[require.resolve(`./commands/${command}.js`)]; // Se limpia la cache de comandos anteriores
 
-    let usar_comando = require(`./comandos/${command}.js`);
+    let usar_comando = require(`./commands/${command}.js`);
     usar_comando.run(client, message, args);
 
   }catch(e) {
