@@ -19,10 +19,10 @@
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
-    "dotenv": "^8.2.0"
   }
 }
