@@ -1,22 +1,22 @@
-// Requiriendo la API de discord.js & otras dependencias
+// Requiring Discord.js && other dependencies 
 const Discord = require("discord.js");
-require('dotenv').config(); // requiero el archivo .env 
+require('dotenv').config(); // requiring .env file 
 
-// Declarando el bot
+// Defining a new Bot
 const client = new Discord.Client(); 
 
-// Almacenando variables de entorno
-const token = process.env.TOKEN; // Almaceno el token guardado en el archivo .env
-const prefix = process.env.PREFIX; // Almaceno el prefix de el archivo .env
+// saving environment variables
+const token = process.env.TOKEN; // Discord token
+const prefix = process.env.PREFIX; // Bot prefix
 
-// Iniciando el bot
+// Initializating 
 client.on("ready", () => {
-   console.log(`Estoy listo como: ${client.user.tag}`);
+   console.log(`I'm ready as: ${client.user.tag}`);
 });
 
 
-// Escuchando un comando
-client.on("message", (message) => {
+// Listening messages
+client.on("message", async (message) => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -24,13 +24,13 @@ client.on("message", (message) => {
   if (!message.content.startsWith(prefix)) return;
   if (message.author.bot) return;
 
-  // Manejador de Comandos
+  // Command Handler
 
   try{
-    delete require.cache[require.resolve(`./commands/${command}.js`)]; // Se limpia la cache de comandos anteriores
+    delete require.cache[require.resolve(`./commands/${command}.js`)]; // Cleanign require cache
 
-    let usar_comando = require(`./commands/${command}.js`);
-    usar_comando.run(client, message, args);
+    let rqr_command = await require(`./commands/${command}.js`);
+    rqr_command.run(client, message, args);
 
   }catch(e) {
     console.log(e);
