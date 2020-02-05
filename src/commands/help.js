@@ -10,7 +10,7 @@ exports.run = (client, message, args) =>{
     // Creating embed message
     const embed = new RichEmbed() 
     .setTitle('Lista de Comandos') // set the embed message title
-    .setColor(RANDOM) // set embed color 0x726eef
+    .setColor("RANDOM") // set embed color 0x726eef
     .setDescription(content(commands)); // embed content 
 
     message.channel.send(embed);
