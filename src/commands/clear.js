@@ -16,7 +16,10 @@ exports.run = (client, message, args) => {
             .catch(console.error);
 
     }else{
-        message.channel.fetchMessages().delete().catch(console.error)
+        for(X=0;x>20;x++){
+            message.channel.fetchMessages().delete().catch(console.error)
+        }
+        
     }
 }
 }
