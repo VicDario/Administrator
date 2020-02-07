@@ -2,10 +2,9 @@ exports.run = (client, message, args) => {
 
     const user = message.mentions.users.first();
 
-    if(user){
-        const member = message.guild.member(user);
+    const member = message.guild.member(user);
 
-        if(member){
+    if(member){
             
             message.channel.fetchMessages()
             .then(messages => `${messages.filter(m => {
@@ -16,6 +15,10 @@ exports.run = (client, message, args) => {
             })}`)
             .catch(console.error);
 
-        }
+    }else{
+        message.channel.fetchMessages()
+            .then(messages => `${messages.filter(m => {
+                   m.delete().catch(console.error)
     }
+}
 }
