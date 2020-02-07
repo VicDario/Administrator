@@ -16,9 +16,7 @@ exports.run = (client, message, args) => {
             .catch(console.error);
 
     }else{
-        message.channel.fetchMessages()
-            .then(messages => `${messages.filter(m => {
-                   m.delete().catch(console.error)
+        message.channel.fetchMessages().delete().catch(console.error)
     }
 }
 }
