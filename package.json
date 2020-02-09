@@ -20,7 +20,10 @@
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "ffmpeg-static": "^4.0.1",
+    "googleapis": "^47.0.0",
+    "ytdl-core": "^1.0.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
