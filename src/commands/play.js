@@ -44,7 +44,7 @@ exports.run = async (client, message, args) => {
                 const dispatcher = conn.playStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
-                embed.setThumbnail(video.data.items[0].snippet.thumbnails.medium);
+                embed.setThumbnail(video.data.items[0].snippet.thumbnails.medium.url);
                 embed.setDescription(video.data.items[0].snippet.description);
                 embed.setColor('RAMDOM');
                 
