@@ -40,19 +40,18 @@ exports.run = async (client, message, args) => {
 
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
-                const stream = ytdl(url, { filter: 'audioonly' });
-                const dispatcher = conn.playStream(stream);
+                const stream = await ytdl(url, { filter: 'audioonly' });
+                const dispatcher =  await conn.playStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
-                embed.setThumbnail(video.data.items[0].snippet.thumbnails.maxres);
+                embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
                 embed.setDescription(video.data.items[0].snippet.description);
                 embed.setColor('RANDOM');
                 
                 message.reply(embed);
 
-                dispatcher.on('end', () => voiceChannel.leave());
+                dispatcher.on('end', () => conn.disconnect());
 
-                console.log(video.data.items[0].snippet.thumbnails);
             }catch(e){
                 message.reply(e);
                 console.log(e);
