@@ -1,5 +1,9 @@
 exports.run = async (client, message, args) => {
 
+    //Requiring embeds
+    const { RichEmbed } = require('discord.js');
+    const embed = new RichEmbed();
+
     //Requiring Google API
     const {google} = require('googleapis');
     const youtube = google.youtube({
@@ -38,6 +42,13 @@ exports.run = async (client, message, args) => {
 
                 const stream = ytdl(url, { filter: 'audioonly' });
                 const dispatcher = conn.playStream(stream);
+
+                embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
+                embed.setThumbnail(video.data.items[0].snippet.thumbnails.medium);
+                embed.setDescription(video.data.items[0].snippet.description);
+                embed.setColor('RAMDOM');
+                
+                message.reply(embed);
 
                 dispatcher.on('end', () => voiceChannel.leave());
 
