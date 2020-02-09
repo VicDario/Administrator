@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     });
 
     // Requiring ytdl
-    const ytdl = require('ytdl-core');
+    const ytdl = require('ytdl-core-discord');
 
 
     if(!message.guild) return;
@@ -22,10 +22,7 @@ exports.run = async (client, message, args) => {
         return;
     }else{
 
-        let query = '';
-        for(param of args){
-            query += param + ' ';
-        }
+        const query = args.join(' ');
 
         if(message.member.voiceChannel){
             
@@ -41,7 +38,7 @@ exports.run = async (client, message, args) => {
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher =  await conn.playStream(stream);
+                const dispatcher =  await conn.playOpusStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
