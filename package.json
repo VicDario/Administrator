@@ -21,7 +21,6 @@
   "dependencies": {
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
-    "ffmpeg-static": "^4.0.1",
     "googleapis": "^47.0.0",
     "ytdl-core": "^1.0.7"
   },
