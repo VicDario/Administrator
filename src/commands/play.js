@@ -46,7 +46,7 @@ exports.run = async (client, message, args) => {
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.medium.url);
                 embed.setDescription(video.data.items[0].snippet.description);
-                embed.setColor('RAMDOM');
+                embed.setColor('RANDOM');
                 
                 message.reply(embed);
 
