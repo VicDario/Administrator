@@ -54,7 +54,7 @@ exports.run = async (client, message, args) => {
 
                 console.log(video.data.items[0].snippet.thumbnails);
             }catch(e){
-                message.reply('se produjo un error al tratar de reproducir la cancion');
+                message.reply(e);
                 console.log(e);
             }
             
