@@ -15,8 +15,8 @@ exports.run = async (client, message, args) => {
     if(!message.guild) return;
 
     if(message.member.voiceChannel){
-        // message.member.voiceChannel.join();
-        console.log(process.env.PATH)
+        message.member.voiceChannel.join();
+        // console.log(process.env.PATH)
     }else {
         message.reply('conectate a un canal de voz');
     }
