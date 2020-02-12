@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher = conn.playStream(stream);
+                const dispatcher = conn.playOpusStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
