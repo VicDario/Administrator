@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
             try{
                 const conn = await message.member.voiceChannel.join();
                 const video =  await youtube.search.list({
-                    part: 'player,id,snippet',
+                    part: 'id,snippet',
                     q: query,
                     type: 'video',
                     maxResults: 1
