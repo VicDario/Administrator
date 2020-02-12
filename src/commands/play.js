@@ -47,7 +47,10 @@ exports.run = async (client, message, args) => {
                 
                 message.reply(embed);
 
-                dispatcher.on('end', () => conn.disconnect());
+                dispatcher.on('end', () => {
+                    conn.disconnect();
+                    console.log(' I\'m out');
+                });
 
             }catch(e){
                 message.reply(e);
