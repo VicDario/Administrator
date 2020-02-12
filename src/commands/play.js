@@ -29,16 +29,18 @@ exports.run = async (client, message, args) => {
             try{
                 const conn = await message.member.voiceChannel.join();
                 const video =  await youtube.search.list({
-                    part: 'id,snippet',
+                    part: 'player,id,snippet',
                     q: query,
                     type: 'video',
                     maxResults: 1
                 });
 
+                console.log(video.data.items[0]);
+
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher =  await conn.playOpusStream(stream);
+                const dispatcher = conn.playStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
