@@ -48,10 +48,16 @@ exports.run = async (client, message, args) => {
                 embed.setColor('RANDOM');
                 
                 message.reply(embed);
-
-                dispatcher.on('end', () => {
+                
+                dispatcher.on('debug', (info) => {
+                    console.log(info);
+                  });
+                dispatcher.on('error', (info) => {
+                    console.log(info);
+                  });
+                dispatcher.on('end', (reason) => {
                     conn.disconnect();
-                    console.log(' I\'m out');
+                    console.log(' I\'m out because: ' + reason);
                 });
 
             }catch(e){
