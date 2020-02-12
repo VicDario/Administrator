@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     });
 
     // Requiring ytdl
-    const ytdl = require('ytdl-core-discord');
+    const ytdl = require('ytdl-core');
 
 
     if(!message.guild) return;
@@ -40,7 +40,7 @@ exports.run = async (client, message, args) => {
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher = conn.playOpusStream(stream);
+                const dispatcher = conn.playStream(stream);
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
@@ -48,7 +48,7 @@ exports.run = async (client, message, args) => {
                 embed.setColor('RANDOM');
                 
                 message.reply(embed);
-                
+
                 dispatcher.on('debug', (info) => {
                     console.log(info);
                   });
