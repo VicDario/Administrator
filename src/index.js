@@ -34,7 +34,7 @@ client.on("message", async (message) => {
 
   }catch(e) {
     console.log(e);
-    message.reply('No puedo realizar esa accion');
+    message.reply('no puedo vieja tonta no bes ke toi chikito');
   }
 
 });

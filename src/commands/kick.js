@@ -14,7 +14,7 @@ exports.run = (client, message, args) => { // Kicking an user
     message.guild.member(user).kick(razon);
     message.channel.send(`**${user.username}**, fue pateado del servidor, razón: ${razon}.`);
   }else {
-    message.reply('no tienes permiso de hacer eso maldito, toy arrecho >:(');
+    message.reply('ysi noquiero q');
   }
   
   }
