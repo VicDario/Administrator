@@ -1,5 +1,6 @@
 exports.run = (client, message, args) => { // Kicking an user
 
+  if(message.member.roles.has(admin) || message.member.roles.has(collaborator)){
     let user = message.mentions.users.first();
     let razon = args.slice(1).join(' ');
     
@@ -9,5 +10,8 @@ exports.run = (client, message, args) => { // Kicking an user
      
     message.guild.member(user).kick(razon);
     message.channel.send(`**${user.username}**, fue pateado del servidor, razón: ${razon}.`);
+  }else {
+    message.reply('no tienes permiso de hacer eso maldito, toy arrecho >:(');
+  }
   
   }
