@@ -1,5 +1,8 @@
 exports.run = (client, message, args) => { // Kicking an user
 
+  const collaborator = process.env.COLLABORATOR;
+  const admin = process.env.ADMIN;
+
   if(message.member.roles.has(admin) || message.member.roles.has(collaborator)){
     let user = message.mentions.users.first();
     let razon = args.slice(1).join(' ');
