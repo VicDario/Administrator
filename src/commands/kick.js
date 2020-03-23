@@ -21,10 +21,10 @@ exports.run = (client, message, args) => { // Kicking an user
     console.log(user);
   }else {
     if(user.id == tkid){
-      message.reply('coño si quisiera, pero muy rata vale');
+      message.reply('Coño si quisiera, pero muy rata vale');
       return;
     }
-    message.reply('ysi noquiero q');
+    message.reply('i zi no kiero k');
   }
   
   }
