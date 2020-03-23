@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
 
             if(conn.speaking){
                 conn.dispatcher.pause();
-                conn.disconnect();
+                //conn.disconnect();
                 message.reply('este comando esta en fase alpha, puede que no responda como deberia y marico el que lo lea');
             }else {
                 message.channel.send('No se esta reproduciendo nada.');
