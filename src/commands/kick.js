@@ -21,7 +21,7 @@ exports.run = (client, message, args) => { // Kicking an user
     console.log(user);
   }else {
     if(user.id == tkid){
-      message.reply('Coño si quisiera, pero muy rata vale');
+      message.reply('El niño del grupo no se toca >:(');
       return;
     }
     message.reply('i zi no kiero k');
