@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
     if(message.member.voiceChannel){
         conn.dispatcher.setVolume(Number.parseFloat(message));
-        message.channel.send("A ber");
+        message.channel.send("A ber" + message);
     }
 
 }
