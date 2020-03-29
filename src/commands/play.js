@@ -58,6 +58,7 @@ exports.run = async (client, message, args) => {
                 dispatcher.on('end', (reason) => {
                     conn.disconnect();
                     console.log(' I\'m out because: ' + reason);
+                    message.channel.send(reason);
                 });
 
             }catch(e){

@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
            if(!conn.speaking){
                 conn.dispatcher.resume();
             }else {
-                message.channel.send('No se esta reproduciendo nada.');
+                message.channel.send('No se puede reanudar.');
             }
 
         }catch(err){
