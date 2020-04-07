@@ -1,14 +1,14 @@
 exports.run = (client, message, args) =>{
 
     // Requires 
-    const { RichEmbed } = require('discord.js'); // Requiring richembed class to create embed messages
+    const { MessageEmbed } = require('discord.js'); // Requiring MessageEmbed class to create embed messages
     const fs = require('fs');
 
     // Finding commands
     const commands = fs.readdirSync('./src/commands');
 
     // Creating embed message
-    const embed = new RichEmbed() 
+    const embed = new MessageEmbed();
     .setTitle('Lista de Comandos') // set the embed message title
     .setColor("RANDOM") // set embed color 0x726eef
     .setDescription(content(commands)); // embed content 
