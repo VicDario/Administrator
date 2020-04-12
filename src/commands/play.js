@@ -1,8 +1,8 @@
 exports.run = async (client, message, args) => {
 
     //Requiring embeds
-    const { RichEmbed } = require('discord.js');
-    const embed = new RichEmbed();
+    const { MessageEmbed } = require('discord.js');
+    const embed = new MessageEmbed();
 
     //Requiring Google API
     const {google} = require('googleapis');
@@ -14,7 +14,6 @@ exports.run = async (client, message, args) => {
     // Requiring ytdl
     const ytdl = require('ytdl-core');
 
-
     if(!message.guild) return;
 
     if(args.length == 0) {
@@ -24,10 +23,10 @@ exports.run = async (client, message, args) => {
 
         const query = args.join(' ');
 
-        if(message.member.voiceChannel){
+        if(message.member.voice.channel ){
             
             try{
-                const conn = await message.member.voiceChannel.join();
+                const conn = await message.member.voice.channel.join();
                 const video =  await youtube.search.list({
                     part: 'id,snippet',
                     q: query,
@@ -40,7 +39,8 @@ exports.run = async (client, message, args) => {
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher = conn.playStream(stream);
+                // const dispatcher = conn.playStream(stream);
+                const dispatcher = conn.play(stream, { quality: 'highestaudio' });
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
                 embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
@@ -49,12 +49,6 @@ exports.run = async (client, message, args) => {
                 
                 message.reply(embed);
 
-                dispatcher.on('debug', (info) => {
-                    console.log(info);
-                  });
-                dispatcher.on('error', (info) => {
-                    console.log(info);
-                  });
                 dispatcher.on('end', (reason) => {
                     conn.disconnect();
                     console.log(' I\'m out because: ' + reason);
@@ -70,13 +64,7 @@ exports.run = async (client, message, args) => {
         }else {
             message.reply('conectate a un canal de voz');
         }
-    
-        
-
 
     }
-
-    
-
 
 }
