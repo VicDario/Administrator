@@ -1,2 +1,2 @@
-# Marico el que lo lea
-A discord bot for my squad
+# Administrator Bot
+A discord bot
