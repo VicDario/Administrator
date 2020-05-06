@@ -1,20 +1,19 @@
 exports.run = async (client, message, args) => {
+    
+    if(!message.guild) return;
 
-    //Requiring embeds
-    const { MessageEmbed } = require('discord.js');
-    const embed = new MessageEmbed();
-
-    //Requiring Google API
+    // Dependencies 
     const {google} = require('googleapis');
+    const ytdl = require('ytdl-core');
+    const { MessageEmbed } = require('discord.js');
+
     const youtube = google.youtube({
-        version: 'v3',
+    version: 'v3',
         auth: process.env.APIKEY
     });
 
-    // Requiring ytdl
-    const ytdl = require('ytdl-core');
+    const embed = new MessageEmbed();
 
-    if(!message.guild) return;
 
     if(args.length == 0) {
         message.reply('ingresa una cancion.');
@@ -34,12 +33,11 @@ exports.run = async (client, message, args) => {
                     maxResults: 1
                 });
 
-                console.log(video.data.items[0]);
+                // console.log(video.data.items[0]);
 
                 let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
                 const stream = await ytdl(url, { filter: 'audioonly' });
-                // const dispatcher = conn.playStream(stream);
                 const dispatcher = conn.play(stream, { quality: 'highestaudio' });
 
                 embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
@@ -49,14 +47,15 @@ exports.run = async (client, message, args) => {
                 
                 message.reply(embed);
 
-                dispatcher.on('end', (reason) => {
-                    conn.disconnect();
-                    console.log(' I\'m out because: ' + reason);
-                    message.channel.send(reason);
+                dispatcher.on('speaking', (value) => { // return a 0 if stopped speaking
+                    setTimeout(() => {
+                        if(!value && !dispatcher.paused){
+                            conn.disconnect();
+                        }
+                    }, 2000); // delaying the disconnet so the pause command can work properly
                 });
 
             }catch(e){
-                message.reply(e);
                 console.log(e);
             }
             

@@ -1,9 +1,10 @@
 exports.run = async (client, message, args) => {
 
-    if(message.member.voiceChannel){
+    if(message.member.voice.channel){
         try{
 
-            const conn = await message.member.voiceChannel.join();
+            const conn = await message.member.voice.channel.join();
+            const dispatcher = conn.dispatcher;
 
             if(conn.speaking){
                 conn.dispatcher.pause();
