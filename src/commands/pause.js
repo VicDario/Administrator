@@ -1,20 +1,20 @@
 exports.run = async (client, message, args) => {
+	if (!message.member.voice.channel) {
+		message.reply("debes estar conectado a un canal de voz");
+		return;
+	}
 
-    if(message.member.voice.channel){
-        try{
+	try {
+		const conn = await message.member.voice.channel.join();
+		const dispatcher = conn.dispatcher;
 
-            const conn = await message.member.voice.channel.join();
-            const dispatcher = conn.dispatcher;
-
-            if(conn.speaking){
-                conn.dispatcher.pause();
-            }else {
-                message.channel.send('No se esta reproduciendo nada.');
-            }
-
-        }catch(err){
-            console.log(err);
-        }
-    }
-
-}
+		if (conn.speaking.bitfield) {
+			conn.dispatcher.pause();
+		} else {
+			message.channel.send("No se esta reproduciendo nada.");
+		}
+	} catch (err) {
+		console.log(err);
+		message.channel.send("Ocurrio un error");
+	}
+};
