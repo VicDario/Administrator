@@ -6,7 +6,7 @@ require('dotenv').config(); // requiring .env file
 const client = new Discord.Client(); 
 
 // saving environment variables
-const token = process.env.TEST_TOKEN; // Discord token
+const token = process.env.TOKEN; // Discord token
 const prefix = process.env.PREFIX; // Bot prefix
 
 // Initializating 
