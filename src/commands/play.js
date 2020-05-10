@@ -1,82 +1,56 @@
 exports.run = async (client, message, args) => {
+	if (!message.guild) return;
 
-    //Requiring embeds
-    const { RichEmbed } = require('discord.js');
-    const embed = new RichEmbed();
+	// Dependencies
+	const { google } = require("googleapis");
+	const ytdl = require("ytdl-core");
+	const { MessageEmbed } = require("discord.js");
 
-    //Requiring Google API
-    const {google} = require('googleapis');
-    const youtube = google.youtube({
-        version: 'v3',
-        auth: process.env.APIKEY
-    });
+	const youtube = google.youtube({
+		version: "v3",
+		auth: process.env.APIKEY,
+	});
 
-    // Requiring ytdl
-    const ytdl = require('ytdl-core');
+	const embed = new MessageEmbed();
+	const query = args.join(" ");
 
+	if (query.length == 0) return message.reply("ingresa una cancion");
 
-    if(!message.guild) return;
+	if (!message.member.voice.channel)
+		return message.reply("conectate a un canal de voz");
 
-    if(args.length == 0) {
-        message.reply('ingresa una cancion.');
-        return;
-    }else{
+	try {
+		const conn = await message.member.voice.channel.join();
+		const video = await youtube.search.list({
+			part: "id,snippet",
+			q: query,
+			type: "video",
+			maxResults: 1,
+		});
 
-        const query = args.join(' ');
+		// console.log(video.data.items[0]);
 
-        if(message.member.voiceChannel){
-            
-            try{
-                const conn = await message.member.voiceChannel.join();
-                const video =  await youtube.search.list({
-                    part: 'id,snippet',
-                    q: query,
-                    type: 'video',
-                    maxResults: 1
-                });
+		let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
 
-                console.log(video.data.items[0]);
+		const stream = await ytdl(url, { filter: "audioonly" });
+		const dispatcher = conn.play(stream, { quality: "highestaudio" });
 
-                let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
+		embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
+		embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
+		embed.setDescription(video.data.items[0].snippet.description);
+		embed.setColor("RANDOM");
 
-                const stream = await ytdl(url, { filter: 'audioonly' });
-                const dispatcher = conn.playStream(stream);
+		message.channel.send(embed);
 
-                embed.setTitle(`Reproduciendo: ${video.data.items[0].snippet.title}`);
-                embed.setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
-                embed.setDescription(video.data.items[0].snippet.description);
-                embed.setColor('RANDOM');
-                
-                message.reply(embed);
-
-                dispatcher.on('debug', (info) => {
-                    console.log(info);
-                  });
-                dispatcher.on('error', (info) => {
-                    console.log(info);
-                  });
-                dispatcher.on('end', (reason) => {
-                    conn.disconnect();
-                    console.log(' I\'m out because: ' + reason);
-                    message.channel.send(reason);
-                });
-
-            }catch(e){
-                message.reply(e);
-                console.log(e);
-            }
-            
-            
-        }else {
-            message.reply('conectate a un canal de voz');
-        }
-    
-        
-
-
-    }
-
-    
-
-
-}
+		dispatcher.on("speaking", (value) => {
+			// return a 0 if stopped speaking
+			setTimeout(() => {
+				if (!value && !dispatcher.paused) {
+					conn.disconnect();
+				}
+			}, 2000); // delaying the disconnect so the pause command can work properly
+		});
+	} catch (e) {
+		console.log(e);
+	}
+};

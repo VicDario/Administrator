@@ -1,23 +1,24 @@
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
+	const user = message.mentions.users.first();
 
-    const user = message.mentions.users.first();
-    
-    if(user){
-            
-            message.channel.fetchMessages({limit: 100})
-            .then(messages => messages.filter(m => {
-               if (m.author.id === user.id){
-                   m.delete().catch(console.error);
-               }
-            
-            }))
-            .catch(console.error);
+	if (user) {
+		try {
+			const messages = await message.channel.messages.fetch({ limit: 100 });
 
-    }else {
-        message.channel.fetchMessages({limit: 100})
-        .then(messages => messages.filter(m => {
-                m.delete().catch(console.error);
-         })).catch(console.error);
-    }
-}
+			messages.forEach((msg) => {
+				if (msg.author.id === user.id) msg.delete();
+			});
+		} catch (error) {
+			console.log(error);
+		}
 
+		return;
+	}
+
+	try {
+		const messages = await message.channel.messages.fetch({ limit: 100 });
+		messages.forEach((msg) => msg.delete());
+	} catch (error) {
+		console.log(error);
+	}
+};
