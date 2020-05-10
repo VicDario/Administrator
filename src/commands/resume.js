@@ -8,19 +8,18 @@ exports.run = async (client, message, args) => {
 		const conn = await message.member.voice.channel.join();
 		const dispatcher = conn.dispatcher;
 
-		if (conn.speaking.bitfield) {
-			message.channel.send("Ya se esta reproduciendo algo");
+		if (!dispatcher) {
+			message.channel.send("No se esta reproduciendo nada");
+			conn.disconnect();
 			return;
-		} else if (dispatcher) {
-			if (dispatcher.paused) {
-				dispatcher.resume();
-				return;
-			}
 		}
 
-		message.channel.send("No estas reproduciendo nada");
-		conn.disconnect();
+		if (conn.speaking.bitfield)
+			return message.channel.send("Ya se esta reproduciendo algo");
+
+		dispatcher.resume();
 	} catch (err) {
 		console.log(err);
+		message.channel.send("Ocurrio un error");
 	}
 };

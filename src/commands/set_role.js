@@ -1,21 +1,20 @@
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
+	const { MessageEmbed } = require("discord.js");
+	const embed = new MessageEmbed();
+	const user = message.mentions.members.first();
+	const userRole = message.member.roles.highest.name;
 
-  const collaborator = process.env.COLLABORATOR;
-  const admin = process.env.ADMIN;
-  
-  const { RichEmbed } = require('discord.js');
-  const embed = new RichEmbed();
-  const user = message.mentions.users.first();
-  
-  try{
-      if(user){
-        console.log(message.guild.roles.array())
-      }else{
-        message.reply('debes mencionar un usuario')
-      }
-  }catch(e){
-      console.log(e);
-  }
+	if (userRole != "admin" && userRole != "collaborator")
+		return message.reply(
+			"Solo los Colaboradores y Admins pueden asignar roles"
+		);
 
-  
-}
+	try {
+		console.log(user);
+    // if (!user) return message.reply('debes mencionar un usuario');
+    message.channel.send('este comando aun no esta desarrollado');
+		
+	} catch (e) {
+		console.log(e);
+	}
+};
