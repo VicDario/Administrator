@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 	const user = message.mentions.members.first();
 	const userRole = message.member.roles.highest.name;
 
-	if (userRole != "admin" && userRole != "collaborator")
+	if (userRole != "Admin" && userRole != "Collaborator")
 		return message.reply(
 			"Solo los Colaboradores y Admins pueden asignar roles"
 		);

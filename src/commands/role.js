@@ -99,6 +99,6 @@ async function del(client, message, args) {
 
 function verify(message) {
 	const userRole = message.member.roles.highest.name;
-	if (userRole != "admin" && userRole != "collaborator") return false;
+	if (userRole != "Admin" && userRole != "Collaborator") return false;
 	return true;
 }

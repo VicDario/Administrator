@@ -3,7 +3,7 @@ exports.run = (client, message, args) => {
 	const userRole = message.member.roles.highest.name;
 	const razon = args.slice(1).join(" ");
 
-	if (userRole != "admin" && userRole != "collaborator")
+	if (userRole != "Admin" && userRole != "Collaborator")
 		return message.reply("i zi no kiero k");
 
 	if (!user) return message.reply("Debe mencionar a alguien.");
