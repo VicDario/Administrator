@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
-    "@discordjs/opus": "git+https://github.com/discordjs/opus.git",
+    "@discordjs/opus": "^0.3.2",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "googleapis": "^49.0.0",
