@@ -19,12 +19,12 @@
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.1.0",
+    "@discordjs/opus": "git+https://github.com/discordjs/opus.git",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "googleapis": "^49.0.0",
     "opusscript": "0.0.7",
-    "ytdl-core": "^2.1.1"
+    "ytdl-core": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
