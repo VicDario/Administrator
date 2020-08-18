@@ -29,9 +29,9 @@ exports.run = async (client, message, args) => {
 		});
 
 		// console.log(video.data.items[0]);
-
+		
 		let url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
-
+		console.log(url);
 		const stream = await ytdl(url, { filter: "audioonly" });
 		const dispatcher = conn.play(stream, { quality: "highestaudio" });
 
@@ -51,6 +51,6 @@ exports.run = async (client, message, args) => {
 			}, 2000); // delaying the disconnect so the pause command can work properly
 		});
 	} catch (e) {
-		console.log(e);
+		console.error(e);
 	}
 };

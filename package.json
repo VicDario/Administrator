@@ -20,13 +20,13 @@
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
     "@discordjs/opus": "^0.1.0",
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "googleapis": "^49.0.0",
     "opusscript": "0.0.7",
-    "ytdl-core": "^2.1.1"
+    "ytdl-core": "^2.1.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   }
 }
