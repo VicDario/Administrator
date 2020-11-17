@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "googleapis": "^49.0.0",
     "opusscript": "0.0.7",
-    "ytdl-core": "^3.2.1"
+    "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
