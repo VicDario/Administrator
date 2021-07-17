@@ -6,6 +6,7 @@ exports.run = async (client, message, args) => {
 	const ytdl = require("ytdl-core-discord");
 	const { MessageEmbed } = require("discord.js");
 
+	try {
 	const youtube = google.youtube({
 		version: "v3",
 		auth: process.env.APIKEY,
@@ -19,7 +20,6 @@ exports.run = async (client, message, args) => {
 	if (!message.member.voice.channel)
 		return message.reply("conectate a un canal de voz");
 
-	try {
 		const conn = await message.member.voice.channel.join();
 		const video = await youtube.search.list({
 			part: "id,snippet",
