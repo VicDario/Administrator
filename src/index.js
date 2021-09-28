@@ -1,17 +1,17 @@
 // Requiring Discord.js && other dependencies 
-const Discord = require("discord.js");
+const { Client, Intents } = require("discord.js");
 require('dotenv').config(); // requiring .env file 
 
 // Defining a new Bot
-const client = new Discord.Client(); 
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 // saving environment variables
 const token = process.env.TOKEN; // Discord token
 const prefix = process.env.PREFIX; // Bot prefix
 
-// Initializating 
+// Initializating
 client.on("ready", () => {
-   console.log(`I'm ready as: ${client.user.tag}`);
+  console.log(`I'm ready as: ${client.user.tag}`);
 });
 
 
