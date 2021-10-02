@@ -55,7 +55,7 @@ async function list(client, message, args) {
 	embed.setTitle("Lista de Roles");
 	embed.setColor("RANDOM");
 	let desc = "";
-	for (value of roles) {
+	for (const value of roles) {
 		if (value[1].name === "@everyone" || value[1].name === "ApBot") continue;
 		desc += value[1].name + "\n";
 	}
@@ -87,14 +87,14 @@ async function add(client, message, args) {
 async function del(client, message, args) {
 	const roleName = args.join(" ");  // used the .join method preventing multiple words role
 	const roles = await message.guild.roles.cache;
-	for (value of roles) {
+	for (const value of roles) {
 		if (value[1].name === roleName) {
 			const deleted = await value[1].delete();
 			message.reply(`El rol ${deleted.name} ha sido eliminado`);
 			return;
 		}
 	}
-	message.reply("no se pudo encontrar el rol");
+	message.reply("No se pudo encontrar el rol");
 }
 
 function verify(message) {
