@@ -6,7 +6,7 @@ services:
     env_file: 
       - ./.env
     ports:
-      - "3000:3000"
+      - "5000:5000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
