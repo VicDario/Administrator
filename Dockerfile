@@ -3,5 +3,5 @@ WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json", "/usr/src/app/"]
 RUN npm install --production
 COPY . .
-EXPOSE 3000
+EXPOSE $PORT
 CMD ["npm", "start"]
