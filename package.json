@@ -1,11 +1,12 @@
 {
-  "name": "Administrator",
+  "name": "administrator",
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node ./src/index",
-    "dev": "nodemon ./src/index"
+    "dev": "nodemon ./src/index",
+    "lint-fix": "eslint . --ext .js --fix"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,8 @@
     "ytdl-core-discord": "^1.2.4"
   },
   "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.3"
   }
 }
