@@ -19,11 +19,16 @@
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
-    "discord.js": "^13.1.0",
+    "@discordjs/opus": "^0.7.0",
+    "@discordjs/rest": "^0.3.0",
+    "@discordjs/voice": "^0.8.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.6.0",
     "dotenv": "^8.2.0",
+    "ffmpeg-static": "^4.4.1",
     "googleapis": "^49.0.0",
     "opusscript": "0.0.7",
+    "sodium": "^3.0.2",
     "ytdl-core": "^4.8.3",
     "ytdl-core-discord": "^1.2.4"
   },
