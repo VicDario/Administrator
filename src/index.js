@@ -23,7 +23,7 @@ const commandFiles = fs.readdirSync(
         'commands'),
 )
     .filter((file) =>
-      file.endsWith('ping.js'),
+      file.endsWith('.js'),
     );
 
 for (const file of commandFiles) {
@@ -39,6 +39,7 @@ client.on('interactionCreate', async (interaction) => {
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
   // Command Handler
+  console.log('epa pea pa');
   try {
     await command.execute(interaction, client);
   } catch (error) {
