@@ -39,7 +39,6 @@ client.on('interactionCreate', async (interaction) => {
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
   // Command Handler
-  console.log('epa pea pa');
   try {
     await command.execute(interaction, client);
   } catch (error) {
