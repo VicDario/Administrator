@@ -35,7 +35,6 @@ for (const file of commandFiles) {
 
 // Listening interactions
 client.on('interactionCreate', async (interaction) => {
-  console.log(interaction);
   if (!interaction.isCommand()) return;
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
