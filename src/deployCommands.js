@@ -19,7 +19,9 @@ const commandFiles = fs.readdirSync(
     );
 
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
+  const command = require(
+      path.resolve(path.basename(__dirname), 'commands', file),
+  );
   commands.push(command.data.toJSON());
 }
 
@@ -35,4 +37,3 @@ const rest = new REST({version: '9'}).setToken(token);
     console.error(error);
   }
 })();
-
