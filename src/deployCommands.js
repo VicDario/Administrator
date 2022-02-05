@@ -6,7 +6,6 @@ require('dotenv').config();
 
 const clientId = process.env.CLIENT_ID;
 const token = process.env.TOKEN;
-const guildId = process.env.GUILD_ID;
 
 
 const commands = [];
@@ -30,7 +29,7 @@ const rest = new REST({version: '9'}).setToken(token);
 (async () => {
   try {
     await rest.put(
-        Routes.applicationCommand(clientId, guildId),
+        Routes.applicationCommands(clientId),
         {body: commands},
     );
   } catch (error) {
