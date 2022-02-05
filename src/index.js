@@ -5,7 +5,9 @@ const path = require('path');
 require('dotenv').config(); // requiring .env file
 
 // Defining a new Bot
-const client = new Client({intents: [Intents.FLAGS.GUILDS]});
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES],
+});
 
 // Saving environment variables
 const token = process.env.TOKEN; // Discord token
