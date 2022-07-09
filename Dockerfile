@@ -1,4 +1,4 @@
-FROM node:16.10.0
+FROM node:16.16
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json", "/usr/src/app/"]
 RUN npm install --production
