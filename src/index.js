@@ -45,9 +45,14 @@ client.on('interactionCreate', async (interaction) => {
     await command.execute(interaction, client);
   } catch (error) {
     console.error(error);
+    const message =
+      error.cause === 'Personalized' ?
+        error.message :
+        'No puedo vieja tonta no bes ke toi chikito';
+
     await interaction.reply(
         {
-          content: 'no puedo vieja tonta no bes ke toi chikito',
+          content: message,
           ephemeral: true,
         },
     );

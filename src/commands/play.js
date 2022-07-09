@@ -9,6 +9,7 @@ const {
   joinVoiceChannel,
 } = require('@discordjs/voice');
 const {MessageEmbed} = require('discord.js');
+const {generateError} = require('../utils');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -20,6 +21,7 @@ module.exports = {
             .setRequired(true)),
   async execute(interaction) {
     const voiceChannel = interaction.member.voice.channel;
+    if (!voiceChannel?.id) throw generateError('Conectate a un chat de voz!');
     const ChannelOptions = {
       channelId: voiceChannel.id,
       guildId: voiceChannel.guild.id,
