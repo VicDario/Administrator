@@ -13,28 +13,28 @@
     "url": "git+https://github.com/VicDario/Administrator.git"
   },
   "keywords": [],
-  "author": "Yurb & VicDario",
+  "author": "VicDario & Yurb",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VicDario/Administrator/issues"
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.8.0",
-    "@discordjs/rest": "^0.3.0",
-    "@discordjs/voice": "^0.8.0",
-    "discord-api-types": "^0.26.1",
-    "discord.js": "^13.6.0",
-    "dotenv": "^8.2.0",
-    "ffmpeg-static": "^4.4.1",
-    "googleapis": "^49.0.0",
+    "@discordjs/opus": "0.8.0",
+    "@discordjs/rest": "0.5.0",
+    "@discordjs/voice": "0.10.0",
+    "discord-api-types": "0.36.1",
+    "discord.js": "13.8.1",
+    "dotenv": "16.0.1",
+    "ffmpeg-static": "^5.0.2",
+    "googleapis": "105.0.0",
     "opusscript": "0.0.7",
-    "sodium": "^3.0.2",
-    "ytdl-core": "^4.8.3"
+    "sodium": "3.0.2",
+    "ytdl-core": "4.11.0"
   },
   "devDependencies": {
-    "eslint": "^8.8.0",
+    "eslint": "^8.19.0",
     "eslint-config-google": "^0.14.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.19"
   }
 }
