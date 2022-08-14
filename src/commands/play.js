@@ -8,7 +8,7 @@ const {
   createAudioResource,
   joinVoiceChannel,
 } = require('@discordjs/voice');
-const {MessageEmbed} = require('discord.js');
+const {EmbedBuilder} = require('discord.js');
 const {generateError} = require('../utils');
 
 module.exports = {
@@ -51,8 +51,8 @@ module.exports = {
     connection.subscribe(player);
     player.on(AudioPlayerStatus.Idle, () => connection.destroy());
 
-    const musicEmbed = new MessageEmbed()
-        .setColor('RANDOM')
+    const musicEmbed = new EmbedBuilder()
+        .setColor('Random')
         .setTitle(video.data.items[0].snippet.title)
         .setDescription(video.data.items[0].snippet.description)
         .setThumbnail(video.data.items[0].snippet.thumbnails.high.url);

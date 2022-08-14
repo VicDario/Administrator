@@ -1,17 +1,21 @@
 // Requiring Discord.js && other dependencies
-const {Client, Intents, Collection} = require('discord.js');
+const {Client, GatewayIntentBits, Collection} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config(); // requiring .env file
 
 // Defining a new Bot
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessages,
+  ],
 });
 
 // Saving environment variables
 const token = process.env.TOKEN; // Discord token
-// const prefix = process.env.PREFIX; // Bot prefix
 
 // Initializating
 client.on('ready', () => {
@@ -37,7 +41,7 @@ for (const file of commandFiles) {
 
 // Listening interactions
 client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isCommand()) return;
+  if (!interaction.isChatInputCommand()) return;
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
   // Command Handler

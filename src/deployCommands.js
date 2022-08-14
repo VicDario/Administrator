@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const clientId = process.env.CLIENT_ID;
 const token = process.env.TOKEN;
-
+const apiVersion = process.env.API_VERSION;
 
 const commands = [];
 const commandFiles = fs.readdirSync(
@@ -24,7 +24,7 @@ for (const file of commandFiles) {
   commands.push(command.data.toJSON());
 }
 
-const rest = new REST({version: '9'}).setToken(token);
+const rest = new REST({version: `${apiVersion}`}).setToken(token);
 
 (async () => {
   try {
