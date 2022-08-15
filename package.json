@@ -19,6 +19,9 @@
     "url": "https://github.com/VicDario/Administrator/issues"
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
+  "engines": {
+    "node": ">=16.9.0"
+  },
   "dependencies": {
     "@discordjs/opus": "0.8.0",
     "@discordjs/rest": "1.0.1",
