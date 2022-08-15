@@ -10,6 +10,7 @@ const {
 } = require('@discordjs/voice');
 const {EmbedBuilder} = require('discord.js');
 const {generateError} = require('../utils');
+const key = proccess.env.API_KEY;
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -30,7 +31,7 @@ module.exports = {
     const connection = joinVoiceChannel(ChannelOptions);
     const youtube = google.youtube({
       version: 'v3',
-      auth: process.env.APIKEY,
+      auth: key,
     });
     const query = interaction.options.getString('name');
     const video = await youtube.search.list({
