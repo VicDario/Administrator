@@ -10,7 +10,7 @@ const {
 } = require('@discordjs/voice');
 const {EmbedBuilder} = require('discord.js');
 const {generateError} = require('../utils');
-const {apiKey} = require('./config');
+const {apiKey} = require('../config');
 
 module.exports = {
   data: new SlashCommandBuilder()
