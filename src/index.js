@@ -2,7 +2,7 @@
 const {Client, GatewayIntentBits, Collection} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config(); // requiring .env file
+const {token} = require('./config');
 
 // Defining a new Bot
 const client = new Client({
@@ -13,9 +13,6 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
   ],
 });
-
-// Saving environment variables
-const token = process.env.TOKEN; // Discord token
 
 // Initializating
 client.on('ready', () => {
