@@ -24,18 +24,18 @@
   },
   "dependencies": {
     "@discordjs/opus": "0.9.0",
-    "@discordjs/rest": "1.4.0",
+    "@discordjs/rest": "1.5.0",
     "@discordjs/voice": "0.14.0",
-    "discord-api-types": "^0.37.16",
-    "discord.js": "14.7.0",
+    "discord-api-types": "^0.37.28",
+    "discord.js": "14.7.1",
     "dotenv": "16.0.3",
     "ffmpeg-static": "5.1.0",
-    "googleapis": "109.0.1",
+    "googleapis": "110.0.0",
     "sodium": "3.0.2",
     "ytdl-core": "4.11.2"
   },
   "devDependencies": {
-    "eslint": "^8.23.1",
+    "eslint": "^8.32.0",
     "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.20"
   }
