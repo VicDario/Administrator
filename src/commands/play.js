@@ -29,7 +29,7 @@ module.exports = {
         metadata: interaction,
       },
     });
-    await interaction.editReply({content: `Loading your track(s)"}`});
+    await interaction.editReply({content: 'Loading your track'});
     const musicEmbed = new EmbedBuilder()
         .setColor('Random')
         .setTitle(track?.title)
