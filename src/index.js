@@ -19,7 +19,8 @@ const client = new Client({
 client.on(Events.ClientReady, (readyClient) => {
   console.log(`I'm ready as: ${readyClient.user.tag}`);
   // Discord Player Initialization
-  new Player(readyClient);
+  // eslint-disable-next-line no-unused-vars
+  const player = new Player(readyClient);
 });
 
 // Load commands
