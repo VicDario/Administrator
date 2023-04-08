@@ -1,16 +1,7 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
-const {google} = require('googleapis');
-const ytdl = require('ytdl-core');
-const {
-  AudioPlayerStatus,
-  StreamType,
-  createAudioPlayer,
-  createAudioResource,
-  joinVoiceChannel,
-} = require('@discordjs/voice');
 const {EmbedBuilder} = require('discord.js');
 const {generateError} = require('../utils');
-const {apiKey} = require('../config');
+const {useMasterPlayer} = require('discord-player');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,42 +13,33 @@ module.exports = {
             .setRequired(true)),
   async execute(interaction) {
     const voiceChannel = interaction.member.voice.channel;
-    if (!voiceChannel?.id) throw generateError('Conectate a un chat de voz!');
-    const ChannelOptions = {
-      channelId: voiceChannel.id,
-      guildId: voiceChannel.guild.id,
-      adapterCreator: voiceChannel.guild.voiceAdapterCreator,
-    };
-    const connection = joinVoiceChannel(ChannelOptions);
-    const youtube = google.youtube({
-      version: 'v3',
-      auth: apiKey,
-    });
+    if (!voiceChannel) throw generateError('Conectate a un chat de voz!');
+    const player = useMasterPlayer();
     const query = interaction.options.getString('name');
-    const video = await youtube.search.list({
-      part: 'id,snippet',
-      q: query,
-      type: 'video',
-      maxResults: 1,
+    await interaction.deferReply();
+    const searchResult = await player.search(query, {
+      requestedBy: interaction.user,
     });
-
-    const url = `https://www.youtube.com/watch?v=${video.data.items[0].id.videoId}`;
-    const stream = ytdl(url, {filter: 'audioonly'});
-    const resource = createAudioResource(
-        stream,
-        {inputType: StreamType.Arbitrary},
-    );
-    const player = createAudioPlayer();
-    player.play(resource);
-    connection.subscribe(player);
-    player.on(AudioPlayerStatus.Idle, () => connection.destroy());
-
+    if (!searchResult.hasTracks()) {
+      throw generateError('No encontre resultados!');
+    }
+    const track = searchResult.tracks[0];
+    await player.play(voiceChannel, track, {
+      nodeOptions: {
+        metadata: interaction,
+      },
+    });
+    await interaction.editReply({content: 'Loading your track'});
     const musicEmbed = new EmbedBuilder()
         .setColor('Random')
-        .setTitle(video.data.items[0].snippet.title)
-        .setDescription(video.data.items[0].snippet.description)
-        .setThumbnail(video.data.items[0].snippet.thumbnails.high.url);
+        .setTitle(track?.title)
+        .setDescription(`Author: ${track?.author}`)
+        .addFields({name: 'Source', value: track?.raw?.source})
+        .setThumbnail(track?.thumbnail);
 
-    interaction.reply({embeds: [musicEmbed]});
+    interaction.editReply({
+      content: 'Your Song is ready!',
+      embeds: [musicEmbed],
+    });
   },
 };
