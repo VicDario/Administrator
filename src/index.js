@@ -1,8 +1,9 @@
 // Requiring Discord.js && other dependencies
-const {Client, GatewayIntentBits, Collection} = require('discord.js');
+const {Client, Collection, Events, GatewayIntentBits} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const {token} = require('./config');
+const {Player} = require('discord-player');
 
 // Defining a new Bot
 const client = new Client({
@@ -15,8 +16,10 @@ const client = new Client({
 });
 
 // Initializating
-client.on('ready', () => {
-  console.log(`I'm ready as: ${client.user.tag}`);
+client.on(Events.ClientReady, (readyClient) => {
+  console.log(`I'm ready as: ${readyClient.user.tag}`);
+  // Discord Player Initialization
+  new Player(readyClient);
 });
 
 // Load commands
@@ -37,7 +40,7 @@ for (const file of commandFiles) {
 }
 
 // Listening interactions
-client.on('interactionCreate', async (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
@@ -51,7 +54,7 @@ client.on('interactionCreate', async (interaction) => {
         error.message :
         'No puedo vieja tonta no bes ke toi chikito';
 
-    await interaction.reply(
+    await interaction.editReply(
         {
           content: message,
           ephemeral: true,
