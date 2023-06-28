@@ -35,7 +35,7 @@
     "dotenv": "16.0.3",
     "erlpack": "github:discord/erlpack",
     "ffmpeg-static": "5.1.0",
-    "sodium-native": "^4.0.1",
+    "sodium-native": "^4.0.3",
     "utf-8-validate": "^6.0.3",
     "zlib-sync": "^0.1.8"
   },
