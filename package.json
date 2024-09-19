@@ -30,7 +30,7 @@
     "@distube/ytdl-core": "^4.11.8",
     "bufferutil": "^4.0.7",
     "discord-api-types": "^0.37.41",
-    "discord-player": "6.6.3",
+    "discord-player": "6.7.1",
     "discord.js": "14.15.1",
     "dotenv": "16.0.3",
     "erlpack": "github:discord/erlpack",
