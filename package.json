@@ -2,10 +2,10 @@
   "name": "administrator",
   "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./src/index",
-    "dev": "nodemon ./src/index",
+    "start": "NODE_ENV=production node ./src",
+    "dev": "nodemon ./src",
     "lint-fix": "eslint . --ext .js --fix"
   },
   "repository": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/VicDario/Administrator#readme",
   "engines": {
-    "node": ">=20.15.0"
+    "node": ">=20.17.0"
   },
   "dependencies": {
     "@discord-player/extractor": "^4.5.1",
@@ -40,6 +40,9 @@
   },
   "devDependencies": {
     "eslint": "^9.10.0",
-    "nodemon": "^3.1.6"
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.6",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
   }
 }
