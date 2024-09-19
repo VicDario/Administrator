@@ -4,14 +4,17 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./src",
-    "dev": "nodemon ./src",
-    "lint-fix": "eslint . --ext .js --fix"
+    "start": "npm run build && NODE_ENV=production node dist/app.js",
+    "dev": "tsnd --respawn --clear src/app.ts",
+    "build": "rimraf ./dist && tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VicDario/Administrator.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "VicDario",
   "license": "ISC",
@@ -39,10 +42,16 @@
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "nodemon": "^3.1.6",
     "prettier": "^3.3.3",
-    "typescript": "^5.6.2"
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.6.0"
   }
 }
