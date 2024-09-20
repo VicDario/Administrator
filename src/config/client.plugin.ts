@@ -12,7 +12,11 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { IDiscordCommand } from '../interfaces/discordCommand.interface';
 
-const allowedExtractors = ['SpotifyExtractor', 'SoundCloudExtractor'];
+const allowedExtractors = [
+  'SpotifyExtractor',
+  'SoundCloudExtractor',
+  'AppleMusicExtractor',
+];
 
 export class DiscordClient {
   commands?: Collection<string, IDiscordCommand>;
@@ -36,13 +40,13 @@ export class DiscordClient {
       allowedExtractors.includes(extractor)
     );
     player.events.on(PlayerEvent.Error, (_, error) => {
-      this.logger.logInfo(`Player error event: ${error.message}`);
+      this.logger.logError(`Player error event: ${error.message}`);
     });
   }
 
   async loadCommands() {
     this.commands = new Collection();
-    const commandsPath = path.resolve('src', 'commands');
+    const commandsPath = path.resolve(__dirname, '..', 'commands');
     const commandsFilesPaths = await fs.readdir(commandsPath);
     const commands = commandsFilesPaths.map((file) =>
       import(`${commandsPath}/${file}`).then<IDiscordCommand>(
@@ -78,6 +82,7 @@ export class DiscordClient {
       await command.execute(interaction);
     } catch (error) {
       this.logger.logError((error as Error).message);
+      this.logger.logError((error as Error).stack!);
     }
   }
 }
