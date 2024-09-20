@@ -12,12 +12,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { IDiscordCommand } from '../interfaces/discordCommand.interface';
 
-const allowedExtractors = [
-  'SpotifyExtractor',
-  'SoundCloudExtractor',
-  'AppleMusicExtractor',
-];
-
 export class DiscordClient {
   commands?: Collection<string, IDiscordCommand>;
   constructor(
@@ -36,9 +30,8 @@ export class DiscordClient {
 
   async addPlayer() {
     const player = new Player(this.client);
-    await player.extractors.loadDefault((extractor) =>
-      allowedExtractors.includes(extractor)
-    );
+    // If we filter extractor it doesn't work
+    await player.extractors.loadDefault();
     player.events.on(PlayerEvent.Error, (_, error) => {
       this.logger.logError(`Player error event: ${error.message}`);
     });
