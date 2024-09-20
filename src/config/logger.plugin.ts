@@ -23,6 +23,11 @@ export class Logger implements ILogger {
         }),
         // - Write all logs with importance level of `info` or less to `combined.log`
         new transports.File({ dirname: 'logs', filename: 'combined.log' }),
+        new transports.File({
+          dirname: 'logs',
+          filename: 'debug.log',
+          level: 'debug',
+        }),
       ],
     });
     if (!envs.PROD) this.addConsoleLogger();
