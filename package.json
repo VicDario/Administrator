@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm run build && NODE_ENV=production node dist/app.js",
-    "dev": "tsnd --respawn --clear src/app.ts",
+    "start": "npm run build && node dist/index.js",
+    "dev": "tsnd --respawn --clear src",
     "build": "rimraf ./dist && tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -14,7 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/VicDario/Administrator.git"
   },
-  "type": "module",
   "keywords": [],
   "author": "VicDario",
   "license": "ISC",
@@ -38,6 +37,7 @@
     "dotenv": "16.4.5",
     "env-var": "^7.5.0",
     "ffmpeg-static": "^5.2.0",
+    "rimraf": "^6.0.1",
     "sodium-native": "^4.2.0",
     "utf-8-validate": "^6.0.4",
     "winston": "^3.14.2",
