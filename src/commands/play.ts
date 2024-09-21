@@ -21,7 +21,8 @@ export default {
   async execute(interaction: CommandInteraction) {
     const voiceChannel = (interaction.member as GuildMember)?.voice.channel;
     if (!voiceChannel)
-      throw new Error('You must be connected to a voice channel!');
+      return await interaction.reply({ content: "You must be connected to a voice channel! :sweat_smile:" });
+
     const player = useMainPlayer();
     const query = interaction.options.get('name', true);
     const songName = query.value as string;
