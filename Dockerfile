@@ -15,7 +15,6 @@ RUN pnpm run build
 
 FROM base
 COPY --from=build /app/dist /app/dist
-COPY --from=build /app/dist /app/dist
 COPY package.json /app/
 WORKDIR /app
 RUN pnpm install --prod
