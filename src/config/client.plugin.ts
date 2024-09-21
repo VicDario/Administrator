@@ -24,7 +24,7 @@ export class DiscordClient {
       this.logger.logInfo(`I'm ready as: ${readyClient.user.tag}`);
     });
     await this.loadCommands();
-    await this.loadInteractionResolver();
+    this.loadInteractionResolver();
     await this.client.login(envs.API_TOKEN);
   }
 
@@ -51,7 +51,7 @@ export class DiscordClient {
     }
   }
 
-  async loadInteractionResolver() {
+  loadInteractionResolver() {
     this.client.on(
       Events.InteractionCreate,
       async (interaction: Interaction) => {
@@ -64,7 +64,7 @@ export class DiscordClient {
   }
 
   findCommand(interaction: CommandInteraction): IDiscordCommand | undefined {
-    return this.commands!.get(interaction.commandName);
+    return this.commands?.get(interaction.commandName);
   }
 
   async executeCommand(
@@ -75,7 +75,7 @@ export class DiscordClient {
       await command.execute(interaction);
     } catch (error) {
       this.logger.logError((error as Error).message);
-      this.logger.logError((error as Error).stack!);
+      this.logger.logError((error as Error).stack as string);
     }
   }
 }
