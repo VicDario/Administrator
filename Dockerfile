@@ -1,4 +1,4 @@
-FROM node:20.17-bullseye-slim as base
+FROM node:20.18.0-bullseye-slim as base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
