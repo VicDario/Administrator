@@ -28,7 +28,7 @@
     "@discord-player/extractor": "^4.5.1",
     "@discordjs/opus": "0.9.0",
     "@discordjs/rest": "2.4.0",
-    "@discordjs/voice": "0.17.0",
+    "@discordjs/voice": "0.18.0",
     "@distube/ytdl-core": "^4.14.4",
     "bufferutil": "^4.0.8",
     "discord-api-types": "^0.37.100",
