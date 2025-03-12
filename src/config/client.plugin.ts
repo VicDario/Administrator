@@ -6,6 +6,7 @@ import {
   Events,
   Interaction,
 } from 'discord.js';
+import { DefaultExtractors } from '@discord-player/extractor';
 import { ILogger } from '../interfaces/logger.interface';
 import { envs } from './env.plugin';
 import { promises as fs } from 'fs';
@@ -30,8 +31,7 @@ export class DiscordClient {
 
   async addPlayer() {
     const player = new Player(this.client);
-    // If we filter extractor it doesn't work
-    await player.extractors.loadDefault();
+    await player.extractors.loadMulti(DefaultExtractors);
     player.events.on(PlayerEvent.Error, (_, error) => {
       this.logger.logError(`Player error event: ${error.message}`);
     });
