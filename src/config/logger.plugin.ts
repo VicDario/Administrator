@@ -4,8 +4,8 @@ import {
   format,
   transports,
 } from 'winston';
-import { envs } from './env.plugin';
-import { ILogger } from '../interfaces/logger.interface';
+import { envs } from './env.plugin.ts';
+import type { ILogger } from '../interfaces/logger.interface.ts';
 
 export class Logger implements ILogger {
   private readonly logger: WinstonLogger;

@@ -1,11 +1,11 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface';
+import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
 
-export default {
+const pingCommand: IDiscordCommand = {
   data: new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Replies with Pong!'),
-  async execute(interaction: CommandInteraction) {
+  async execute(interaction: CommandInteraction): Promise<void> {
     const message = await interaction.reply({
       content: ':ping_pong: Pong!',
       fetchReply: true,
@@ -15,4 +15,6 @@ export default {
       content: `:ping_pong: Pong! (Took ${ping}ms)`,
     });
   },
-} as IDiscordCommand;
+};
+
+export default pingCommand;

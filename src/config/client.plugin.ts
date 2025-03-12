@@ -1,3 +1,5 @@
+import * as fs from 'node:fs/promises';
+import path from 'node:path';
 import { Player, PlayerEvent } from 'discord-player';
 import {
   Client,
@@ -7,17 +9,15 @@ import {
   Interaction,
 } from 'discord.js';
 import { DefaultExtractors } from '@discord-player/extractor';
-import { ILogger } from '../interfaces/logger.interface';
-import { envs } from './env.plugin';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface';
+import { envs } from './env.plugin.ts';
+import type { ILogger } from '../interfaces/logger.interface.ts';
+import type { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
 
 export class DiscordClient {
   readonly commands: Collection<string, IDiscordCommand>;
   constructor(
     private readonly logger: ILogger,
-    private readonly client: Client
+    private readonly client: Client<boolean>
   ) {
     this.commands = new Collection();
   }
@@ -30,9 +30,11 @@ export class DiscordClient {
     this.loadInteractionResolver();
     await this.client.login(envs.API_TOKEN);
   }
-
   async addPlayer() {
-    const player = new Player(this.client);
+    // FIXME: Check for a fix to avoid use any, currently there's a type issue
+
+    // deno-lint-ignore no-explicit-any
+    const player = new Player(this.client as any);
     await player.extractors.loadMulti(DefaultExtractors);
     player.events.on(PlayerEvent.Error, (_, error) => {
       this.logger.logError(`Player error event: ${error.message}`);
@@ -40,7 +42,7 @@ export class DiscordClient {
   }
 
   async loadCommands() {
-    const commandsPath = path.resolve(__dirname, '..', 'commands');
+    const commandsPath = path.resolve(import.meta.dirname!, '..', 'commands');
     const commandsFilesPaths = await fs.readdir(commandsPath);
     const commands = commandsFilesPaths.map((file) =>
       import(`${commandsPath}/${file}`).then<IDiscordCommand>(

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import * as env from 'env-var';
+import env from 'env-var';
 
 export const envs = {
   PROD: env.get('PROD').required().asBool(),

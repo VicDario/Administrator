@@ -6,7 +6,7 @@ import {
   EmbedBuilder,
 } from 'discord.js';
 import { useMainPlayer } from 'discord-player';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface';
+import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
 
 export default {
   data: new SlashCommandBuilder()
@@ -21,7 +21,9 @@ export default {
   async execute(interaction: CommandInteraction) {
     const voiceChannel = (interaction.member as GuildMember)?.voice.channel;
     if (!voiceChannel)
-      return await interaction.reply({ content: "You must be connected to a voice channel! :sweat_smile:" });
+      return await interaction.reply({
+        content: 'You must be connected to a voice channel! :sweat_smile:',
+      });
 
     const player = useMainPlayer();
     const query = interaction.options.get('name', true);
@@ -31,7 +33,7 @@ export default {
       content: `Looking for your track - "${songName}"`,
     });
     try {
-      const { track } = await player.play(voiceChannel, songName, {
+      const { track } = await player.play(voiceChannel.id, songName, {
         nodeOptions: {
           metadata: interaction.channel,
           bufferingTimeout: 15000,

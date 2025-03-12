@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
-import { DiscordClient } from './config/client.plugin';
-import { Logger } from './config/logger.plugin';
+import { DiscordClient } from './config/client.plugin.ts';
+import { Logger } from './config/logger.plugin.ts';
 
 const logger = new Logger();
 
