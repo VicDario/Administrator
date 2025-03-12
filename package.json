@@ -25,20 +25,20 @@
     "node": ">=20.17.0"
   },
   "dependencies": {
-    "@discord-player/extractor": "^4.5.1",
+    "@discord-player/extractor": "^7.1.0",
     "@discordjs/opus": "0.10.0",
     "@discordjs/rest": "2.4.3",
     "@discordjs/voice": "0.18.0",
-    "@distube/ytdl-core": "^4.15.1",
-    "bufferutil": "^4.0.8",
-    "discord-api-types": "^0.37.111",
-    "discord-player": "6.7.1",
+    "@distube/ytdl-core": "^4.16.4",
+    "bufferutil": "^4.0.9",
+    "discord-api-types": "^0.37.119",
+    "discord-player": "7.1.0",
     "discord.js": "14.18.0",
     "dotenv": "16.4.7",
     "env-var": "^7.5.0",
     "ffmpeg-static": "^5.2.0",
     "rimraf": "^6.0.1",
-    "sodium-native": "^4.3.1",
+    "sodium-native": "^4.3.3",
     "utf-8-validate": "^6.0.5",
     "winston": "^3.17.0",
     "zlib-sync": "^0.1.9"
@@ -55,5 +55,11 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "bufferutil",
+      "esbuild"
+    ]
   }
 }
