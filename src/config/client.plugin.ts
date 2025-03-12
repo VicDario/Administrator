@@ -14,11 +14,13 @@ import path from 'path';
 import { IDiscordCommand } from '../interfaces/discordCommand.interface';
 
 export class DiscordClient {
-  commands?: Collection<string, IDiscordCommand>;
+  readonly commands: Collection<string, IDiscordCommand>;
   constructor(
     private readonly logger: ILogger,
     private readonly client: Client
-  ) {}
+  ) {
+    this.commands = new Collection();
+  }
 
   async turnsOn() {
     this.client.once(Events.ClientReady, (readyClient) => {
@@ -38,7 +40,6 @@ export class DiscordClient {
   }
 
   async loadCommands() {
-    this.commands = new Collection();
     const commandsPath = path.resolve(__dirname, '..', 'commands');
     const commandsFilesPaths = await fs.readdir(commandsPath);
     const commands = commandsFilesPaths.map((file) =>
