@@ -7,10 +7,10 @@ import {
   Interaction,
 } from 'discord.js';
 import { DefaultExtractors } from '@discord-player/extractor';
-import { envs } from './env.plugin.ts';
-import type { ILogger } from '../interfaces/logger.interface.ts';
-import type { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
-import { loadFiles } from '../utils/load_files.utils.ts';
+import { envs } from './config/env.plugin.ts';
+import type { ILogger } from './interfaces/logger.interface.ts';
+import type { IDiscordCommand } from './interfaces/discordCommand.interface.ts';
+import { loadFiles } from './utils/load_files.utils.ts';
 
 export class DiscordClient {
   readonly commands: Collection<string, IDiscordCommand>;
@@ -41,7 +41,7 @@ export class DiscordClient {
   }
 
   async loadCommands() {
-    const commandsPath = `${import.meta.dirname!}/../commands`;
+    const commandsPath = `${import.meta.dirname!}/commands`;
     const commands = await loadFiles<IDiscordCommand>(commandsPath);
     commands.forEach((command) =>
       this.commands.set(command.data.name, command)
