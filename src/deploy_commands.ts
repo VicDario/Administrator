@@ -1,7 +1,7 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
 import { envs } from './config/env.plugin.ts';
-import type { IDiscordCommand } from './interfaces/discordCommand.interface.ts';
+import type { IDiscordCommand } from './interfaces/discord_command.interface.ts';
 import { loadFiles } from './utils/load_files.utils.ts';
 
 (async () => {
