@@ -1,5 +1,5 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
+import { IDiscordCommand } from '../interfaces/discord_command.interface.ts';
 import { ILogger } from '../interfaces/logger.interface.ts';
 
 class PingCommand implements IDiscordCommand {

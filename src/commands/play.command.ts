@@ -6,7 +6,7 @@ import {
   EmbedBuilder,
 } from 'discord.js';
 import { useMainPlayer } from 'discord-player';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
+import { IDiscordCommand } from '../interfaces/discord_command.interface.ts';
 
 class PlayCommand implements IDiscordCommand {
   data = new SlashCommandBuilder()

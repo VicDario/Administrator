@@ -1,5 +1,5 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
+import { IDiscordCommand } from '../interfaces/discord_command.interface.ts';
 import { useQueue } from 'discord-player';
 
 class PauseCommand implements IDiscordCommand {
