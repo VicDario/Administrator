@@ -7,8 +7,12 @@ import {
 } from 'discord.js';
 import { useMainPlayer } from 'discord-player';
 import { IDiscordCommand } from '../interfaces/discord_command.interface.ts';
+import { ILogger } from '../interfaces/logger.interface.ts';
+import { Logger } from '../config/logger.plugin.ts';
 
 class PlayCommand implements IDiscordCommand {
+  constructor(private readonly logger?: ILogger) {}
+
   data = new SlashCommandBuilder()
     .setName('play')
     .setDescription('Plays music from some sources')
@@ -20,6 +24,7 @@ class PlayCommand implements IDiscordCommand {
     );
 
   async execute(interaction: CommandInteraction): Promise<void> {
+    this.logger?.logInfo('Play command executed');
     const voiceChannel = (interaction.member as GuildMember)?.voice.channel;
     if (!voiceChannel) {
       await interaction.reply({
@@ -27,7 +32,6 @@ class PlayCommand implements IDiscordCommand {
       });
       return;
     }
-
     const player = useMainPlayer();
     const query = interaction.options.get('name', true);
     const songName = query.value as string;
@@ -35,6 +39,7 @@ class PlayCommand implements IDiscordCommand {
     await interaction.editReply({
       content: `Looking for your track - "${songName}"`,
     });
+    this.logger?.logInfo(`Song name: ${songName}`);
     try {
       const { track } = await player.play(voiceChannel.id, songName, {
         nodeOptions: {
@@ -68,4 +73,4 @@ class PlayCommand implements IDiscordCommand {
   }
 }
 
-export default new PlayCommand();
+export default new PlayCommand(new Logger());

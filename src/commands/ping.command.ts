@@ -1,6 +1,7 @@
 import { CommandInteraction, SlashCommandBuilder } from 'discord.js';
 import { IDiscordCommand } from '../interfaces/discord_command.interface.ts';
 import { ILogger } from '../interfaces/logger.interface.ts';
+import { Logger } from '../config/logger.plugin.ts';
 
 class PingCommand implements IDiscordCommand {
   constructor(private readonly logger?: ILogger) {}
@@ -21,4 +22,4 @@ class PingCommand implements IDiscordCommand {
   }
 }
 
-export default new PingCommand();
+export default new PingCommand(new Logger());
