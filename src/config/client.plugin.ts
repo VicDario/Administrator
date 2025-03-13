@@ -1,5 +1,3 @@
-import * as fs from 'node:fs/promises';
-import path from 'node:path';
 import { Player, PlayerEvent } from 'discord-player';
 import {
   Client,
@@ -12,6 +10,7 @@ import { DefaultExtractors } from '@discord-player/extractor';
 import { envs } from './env.plugin.ts';
 import type { ILogger } from '../interfaces/logger.interface.ts';
 import type { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
+import { loadFiles } from '../utils/load_files.utils.ts';
 
 export class DiscordClient {
   readonly commands: Collection<string, IDiscordCommand>;
@@ -42,16 +41,12 @@ export class DiscordClient {
   }
 
   async loadCommands() {
-    const commandsPath = path.resolve(import.meta.dirname!, '..', 'commands');
-    const commandsFilesPaths = await fs.readdir(commandsPath);
-    const commands = commandsFilesPaths.map((file) =>
-      import(`${commandsPath}/${file}`).then<IDiscordCommand>(
-        (command) => command.default
-      )
+    const commandsPath = `${import.meta.dirname!}/../commands`;
+    const commands = await loadFiles<IDiscordCommand>(commandsPath);
+    commands.forEach((command) =>
+      this.commands.set(command.data.name, command)
     );
-    for await (const command of commands) {
-      this.commands.set(command.data.name, command);
-    }
+    console.log(commands);
   }
 
   loadInteractionResolver() {
