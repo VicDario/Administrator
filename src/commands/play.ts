@@ -8,8 +8,8 @@ import {
 import { useMainPlayer } from 'discord-player';
 import { IDiscordCommand } from '../interfaces/discordCommand.interface.ts';
 
-export default {
-  data: new SlashCommandBuilder()
+class PlayCommand implements IDiscordCommand {
+  data = new SlashCommandBuilder()
     .setName('play')
     .setDescription('Plays music from some sources')
     .addStringOption((option) =>
@@ -17,13 +17,16 @@ export default {
         .setName('name')
         .setDescription('The name of the song to play')
         .setRequired(true)
-    ),
-  async execute(interaction: CommandInteraction) {
+    );
+
+  async execute(interaction: CommandInteraction): Promise<void> {
     const voiceChannel = (interaction.member as GuildMember)?.voice.channel;
-    if (!voiceChannel)
-      return await interaction.reply({
+    if (!voiceChannel) {
+      await interaction.reply({
         content: 'You must be connected to a voice channel! :sweat_smile:',
       });
+      return;
+    }
 
     const player = useMainPlayer();
     const query = interaction.options.get('name', true);
@@ -52,15 +55,17 @@ export default {
         } as APIEmbedField)
         .setThumbnail(track?.thumbnail);
 
-      return await interaction.editReply({
+      await interaction.editReply({
         content: 'Your Song is ready!',
         embeds: [musicEmbed],
       });
     } catch (error) {
       console.log(error);
-      return await interaction.editReply({
+      await interaction.editReply({
         content: 'Something wrong happen',
       });
     }
-  },
-} as IDiscordCommand;
+  }
+}
+
+export default new PlayCommand();
