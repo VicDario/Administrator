@@ -46,7 +46,6 @@ export class DiscordClient {
     commands.forEach((command) =>
       this.commands.set(command.data.name, command)
     );
-    console.log(commands);
   }
 
   loadInteractionResolver() {
