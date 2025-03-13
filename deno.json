@@ -1,13 +1,13 @@
 {
   "tasks": {
-    "start": "deno run src/index.ts",
-    "dev": "deno run --watch src/index.ts",
+    "start": "DENO_TRACE_PERMISSIONS=true deno run --env-file -A src/index.ts",
+    "dev": "deno run --env-file -A --watch src/index.ts",
+    "deploy:commands": "deno run --env-file -A src/deploy_commands.ts",
     "lint": "deno lint"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@discord-player/extractor": "npm:@discord-player/extractor",
-    "dotenv/config": "npm:dotenv/config",
     "discord.js": "npm:discord.js",
     "@discordjs/rest": "npm:@discordjs/rest",
     "discord-api-types/v10": "npm:discord-api-types/v10",

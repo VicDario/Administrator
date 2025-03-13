@@ -2,13 +2,14 @@
   "version": "4",
   "specifiers": {
     "jsr:@std/assert@1": "1.0.11",
+    "jsr:@std/dotenv@*": "0.225.3",
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "npm:@discord-player/extractor@*": "7.1.0",
     "npm:@discordjs/rest@*": "2.4.3",
+    "npm:@types/node@*": "22.12.0",
     "npm:discord-api-types@*": "0.37.119",
     "npm:discord-player@*": "7.1.0_@discord-player+extractor@7.1.0_mediaplex@1.0.0",
     "npm:discord.js@*": "14.18.0",
-    "npm:dotenv@*": "16.4.7",
     "npm:env-var@*": "7.5.0",
     "npm:winston@*": "3.17.0"
   },
@@ -18,6 +19,9 @@
       "dependencies": [
         "jsr:@std/internal"
       ]
+    },
+    "@std/dotenv@0.225.3": {
+      "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
     },
     "@std/internal@1.0.5": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
@@ -534,9 +538,6 @@
         "domelementtype",
         "domhandler"
       ]
-    },
-    "dotenv@16.4.7": {
-      "integrity": "sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ=="
     },
     "eastasianwidth@0.2.0": {
       "integrity": "sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA=="
@@ -1241,7 +1242,6 @@
       "npm:discord-api-types@*",
       "npm:discord-player@*",
       "npm:discord.js@*",
-      "npm:dotenv@*",
       "npm:env-var@*",
       "npm:winston@*"
     ]
