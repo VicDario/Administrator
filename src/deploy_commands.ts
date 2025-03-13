@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
 import { envs } from './config/env.plugin.ts';
