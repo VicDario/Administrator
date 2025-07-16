@@ -9,7 +9,7 @@ import {
 import { DefaultExtractors } from '@discord-player/extractor';
 import { envs } from './config/env.plugin.ts';
 import type { ILogger } from './interfaces/logger.interface.ts';
-import type { IDiscordCommand } from './interfaces/discordCommand.interface.ts';
+import type { IDiscordCommand } from './interfaces/discord_command.interface.ts';
 import { loadFiles } from './utils/load_files.utils.ts';
 
 export class DiscordClient {
