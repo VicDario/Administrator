@@ -1,4 +1,4 @@
-FROM denoland/deno:2.2.3
+FROM denoland/deno:2.4.2
 RUN apt-get -y update && apt-get -y upgrade && apt-get install -y --no-install-recommends ffmpeg
 USER deno
 WORKDIR /app
